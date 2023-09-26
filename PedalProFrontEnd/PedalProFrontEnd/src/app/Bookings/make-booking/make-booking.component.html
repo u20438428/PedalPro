@@ -1,0 +1,200 @@
+<nav class="navbar navbar-expand-lg " style="background-color: #F4EEEE;">
+  <a class="navbar-brand" href="#"></a>
+  <img src="assets/CBT.jpg" style="width: 80px; height: 50px;">
+  <div class="container">
+    <a class="navbar-brand" href="#"></a>
+    <a class="navbar-brand" href="#"></a>
+    <a class="navbar-brand" href="#"></a>
+    <a class="navbar-brand" href="#"></a>
+    <a class="navbar-brand" href="#"></a>
+    <a class="navbar-brand" href="#"></a>
+    <a class="navbar-brand" href="#"></a>
+    <a class="navbar-brand" href="#"></a>
+    <a class="navbar-brand" href="#"></a>
+    <a class="navbar-brand" href="#"></a>
+    <a class="navbar-brand" href="#"></a>
+    <a class="navbar-brand" href="#"></a>
+    <a class="navbar-brand" href="#"></a>
+    <a class="navbar-brand" href="#"></a>
+    <a class="navbar-brand" routerLink="/clientLanding">Home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Bookings
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="nav-link active" aria-current="page" routerLink="/calendar" >Make Booking</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="nav-link active" aria-current="page" routerLink="/ViewClientBookings">View bookings</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="nav-link active" aria-current="page" routerLink="/ProvideFeedback" >Provide feedback</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Packages
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="nav-link active" aria-current="page" routerLink="/ViewAvailPackages" >View available packages</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Training Modules
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <ng-container *ngIf="modules.length > 0; else noModules">
+              <div *ngFor="let module of modules; let last=last">
+                <li><a class="nav-link active" aria-current="page" [routerLink]="['/MaterialContent','edit',module.trainingModuleId]">{{module.trainingModuleName}}</a></li>
+                <li *ngIf="!last"><hr class="dropdown-divider"></li>
+              </div>
+            </ng-container>
+            <ng-template #noModules>
+              <div class="dropdown-item">No available modules</div>
+            </ng-template>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Workouts
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="nav-link active" aria-current="page" routerLink="/Workouts" >View my workouts</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="nav-link active" aria-current="page" routerLink="/AddWorkout">Add workout</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Bicycle
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="nav-link active" aria-current="page" routerLink="/Bicycle" >View my bicycles</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="nav-link active" aria-current="page" routerLink="/AddBicycle">Add bicyle</a></li>
+          </ul>
+        </li>
+        
+      </ul>
+    </div>
+    
+    <small>{{cartnumber}}</small>
+    <mat-icon routerLink="/ViewCart">shopping_cart</mat-icon>
+    <a class="navbar-brand" href="#"></a>
+    <mat-icon routerLink="/view-help">help_outline</mat-icon>
+    <a class="navbar-brand" href="#"></a>
+    <a class="navbar-brand" href="#"></a>
+    <mat-menu #accountMenu="matMenu">
+      <button mat-menu-item routerLink="/ViewAccount">View Account Details</button>
+      <button mat-menu-item routerLink="/PrintViewIF">View/Print Indemnity Form</button>
+      <button mat-menu-item routerLink="/ClientUploadIF">Upload indemnity form</button>
+      <button mat-menu-item routerLink="/WorkoutReport">Workout stats report</button>
+    </mat-menu>
+    
+    <div class="circular-button" [matMenuTriggerFor]="accountMenu" aria-label="View Account">
+      <div *ngIf="clientDetails?.clientProfilePicture; else fallbackImage">
+        <img src="{{ clientDetails?.clientProfilePicture }}" alt="Profile">
+      </div>
+      
+      <ng-template #fallbackImage>
+        <img src="assets/profile.jpg" alt="Image">
+      </ng-template>
+    </div>
+    
+    <a class="navbar-brand" href="#"></a>
+    <a class="navbar-brand" href="#"></a>
+    <a class="nav-link active" aria-current="page" (click)="Logout()" id="logout">Logout</a>
+  </div>
+  
+</nav>
+<br/>
+<br/>
+<br/>
+<div class="row">
+    <div class="col-5">
+      
+      
+    </div>
+    <div class="col-6">
+      <div class="wholecontainer">
+      <br/>
+      <h2>Booking details</h2>
+      <br/>
+      <form #form="ngForm" (ngSubmit)="addBookingtwo()">
+        <div class="mb-3">
+          <label for="empType" class="form-label" style="font-size: 16px;">Booking Type:</label>
+          <select class="form-select" id="empType" name="empType" [(ngModel)]="schedule.bookingTypeId" #empType="ngModel" required>
+            <option value="">Select a booking type</option>
+            <option *ngFor="let type of BookingTypes" [value]="type.bookingTypeId">{{ type.bookingTypeName }} (R{{ type.bookingTypePrice }})</option>
+          </select>
+        </div>
+        <div *ngIf="empType.invalid && (empType.dirty || empType.touched)" class="alert" id="alert">
+          <small *ngIf="empType.errors?.['required']">
+            <span>*Booking type is required!</span>
+          </small>
+        </div>
+        <div class="mb-3">
+          <label for="biycle" class="form-label" style="font-size: 16px;">Bicycle:</label>
+          <select class="form-select" id="biycle" name="biycle" [(ngModel)]="schedule.bicycleId" #biycle="ngModel" required>
+            <option value="">Select a biycle</option>
+            <option *ngFor="let type of bicycles" [value]="type.bicycleId">{{ type.bicycleName }}</option>
+          </select>
+        </div>
+        <div *ngIf="biycle.invalid && (biycle.dirty || biycle.touched)"
+            class="alert" id="alert">
+            <small *ngIf="biycle.errors?.['required']">
+              <span>*Bicycle is required!</span>
+            </small>
+        </div>
+        <div class="mb-3">
+          <label for="Part" class="form-label" style="font-size: 16px;">Bicycle Part(only for service):</label>
+          <select class="form-select" id="biycle" name="Part" [(ngModel)]="schedule.bicyclePartId" #Part="ngModel" required>
+            <option value="">Select a biycle part</option>
+            <option *ngFor="let type of bicycleParts" [value]="type.bicyclePartId">{{ type.bicyclePartName }}</option>
+          </select>
+        </div>
+        <div *ngIf="Part.invalid && (Part.dirty || Part.touched)"
+            class="alert" id="alert">
+            <small *ngIf="Part.errors?.['required']">
+              <span>*Bicycle Part is required!</span>
+            </small>
+        </div>
+
+        <div class="mb-3">
+          <label for="name" class="form-label" style="font-size: 16px;">Description of booking:</label>
+          <textarea type="text" class="form-control" id="Description" name="Description" [(ngModel)]="schedule.description" #Description="ngModel" forbiddenName="client" required></textarea>
+        </div>
+        <div *ngIf="Description.invalid && (Description.dirty || Description.touched)"
+            class="alert" id="alert">
+            <div *ngIf="Description.errors?.['required']">
+              <span>*Description is required!</span>
+            </div>
+        </div>
+        
+        <button type="submit" class="btn btn-success" id="submit" style="margin-right: 6px;">Submit</button>
+        <button type="button" class="btn btn-danger" id="cancel" (click)="cancel_continue()">Cancel</button>
+      </form>
+      </div>
+    </div>
+
+    <div class="col-1">
+
+    </div>
+
+    <div class="modal" id="myModal" style="display: none;" >
+      <div class="modal-dialog" id="Dialog">
+        <div class="modal-content" id="Content">
+          
+          <div class="modal-body" id="modalBody">
+            <h4>Your booking has been made</h4>
+            <br/>
+            <button type="button" class="btn btn-success" (click)="cancel_continue()" id="submit">Continue</button>
+          </div>
+        </div>
+      </div>
+    </div>
+

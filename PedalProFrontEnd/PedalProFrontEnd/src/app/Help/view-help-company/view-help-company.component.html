@@ -1,0 +1,34 @@
+<br/>
+<br/>
+<br/>
+
+<div class="wholecontainer">
+        
+    <br/>
+    <mat-icon routerLink="/companyLanding" aria-label="Back">keyboard_backspace</mat-icon>
+    <h1 id="HEADING">General Help Information</h1>
+    <div class="search-container">
+      <input type="text" placeholder="Search..." [(ngModel)]="searchTerm">
+    </div>
+
+    <div class="panel">
+      <ng-container *ngIf="filteredModules().length > 0; else noModulesFound">
+        <details *ngFor="let help of filteredModules()">
+          <summary>
+            <ul>
+              <li class="titleName">{{ help.helpName }}</li>
+              <li class="titleValue">{{ GetCategory(help.helpCategoryId) }}</li>
+              <!-- Other list items here -->
+            </ul>
+          </summary>
+          <div class="content">
+            <p>{{ help.helpDescription }}</p>
+          </div>
+        </details>
+      </ng-container>
+    
+      <ng-template #noModulesFound>
+        <div class="alert">No help information found.</div>
+      </ng-template>
+    </div>
+    
