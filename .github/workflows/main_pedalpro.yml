@@ -53,5 +53,5 @@ jobs:
         with:
           app-name: 'PedalPro'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_8F948451D2774771A222EB22782D47F6 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0741CC87F6D84A1A9D823906949E5713 }}
           package: .
