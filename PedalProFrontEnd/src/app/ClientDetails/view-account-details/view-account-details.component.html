@@ -1,0 +1,91 @@
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="help-container" id="helphelp">
+  <div style="text-align: center;">
+    <h6>Help for: Account details</h6>
+  </div>
+  <ul>
+    <li>You can update your profile image by clicking on it</li>
+    <li>Click the edit button in order to edit certain personal details</li>
+    <li>Deactivating your account will result in you being logged out of the system until you decide to return</li>
+    <li>Click on the button to close this window</li>
+  </ul>
+</div>  
+<div class="container">
+  
+  
+  <mat-icon routerLink="/clientLanding" aria-label="Back" id="back">keyboard_backspace</mat-icon>
+    
+    <h2>Account Details</h2>
+  
+    <div class="profile-image" routerLink="/testingpage">
+      <ng-container *ngIf="clientDetails?.clientProfilePicture; else defaultImage">
+        <img src="{{ clientDetails?.clientProfilePicture }}" alt="Empty" routerLink="/testingpage">
+      </ng-container>
+      <ng-template #defaultImage>
+        <img src="assets/profile.jpg" alt="Default" routerLink="/testingpage">
+      </ng-template>
+      <mat-icon class="icontwo" title="Edit Profile" #icontwo>edit</mat-icon>
+    </div>
+    
+
+    
+    
+  
+    <div *ngIf="clientDetails; else loadingTemplate">
+    <p><strong>Title:</strong> {{ clientDetails.clientTitle }}</p>
+    <p><strong>Name:</strong> {{ clientDetails.clientName }}</p>
+      <p><strong>Surname:</strong> {{ clientDetails.clientSurname }}</p>
+      <p><strong>Phone Number:</strong> {{ clientDetails.clientPhoneNum }}</p>
+      <p><strong>Date of birth:</strong> {{ clientDetails.clientDateOfBirth |date}}</p>
+      <p><strong>Email:</strong> {{ clientDetails.clientEmailAddress }}</p>
+      <!-- Add other properties here as needed -->
+    </div>
+  
+    <!-- Edit button for the entire account details -->
+    <button mat-icon-button class="edit-icon" (click)="openEditDialog()">
+      <mat-icon>edit</mat-icon>
+    </button>
+
+    <button id="submit" (click)="deactivateAccount()">Deactivate account?</button>
+    <br/>
+    <div class="help-button-container">
+      <button mat-icon-button class="help-button" (click)="toggleHelp()" style="text-align: center;">
+        <mat-icon>help_outline</mat-icon>
+      </button>
+    </div>
+    
+    
+    
+
+    <div class="help-container" id="helphelp">
+      <ul>
+        <li>You can update your profile image by clicking on it</li>
+        <li>Click the edit button in order to edit certain personal details</li>
+        <li>Deactivating your account will result in you being logged out of the system until you decide to return</li>
+        <li>Click on the button to close this window</li>
+      </ul>
+    </div>
+</div>
+  
+  <ng-template #loadingTemplate>
+    <p class="loading-message">Loading...</p>
+  </ng-template>
+
+  <div class="modal" id="myModal" style="display: none;" >
+    <div class="modal-dialog" id="Dialog">
+      <div class="modal-content" id="Content">
+        
+        <div class="modal-body" id="modalBody">
+          <h4>Your account has been de-activated, you will be redirected to the login page</h4>
+          <br/>
+          <button type="button" class="btn btn-success" (click)="cancel_continue()" id="cancel">Continue</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  

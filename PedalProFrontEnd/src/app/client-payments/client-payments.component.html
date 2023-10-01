@@ -1,0 +1,38 @@
+<br/>
+<br/>
+<br/>
+
+  <div class="wholecontainer">
+    <mat-icon routerLink="/clientLanding" aria-label="Back" id="back">keyboard_backspace</mat-icon>
+    <br/>
+    <h1 id="HEADING">Recent payments</h1>
+    <div class="search-container">
+        <input type="text" placeholder="Search..." [(ngModel)]="searchTerm">
+      </div>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>Name</th>
+                <th>Payment Date</th>
+                <th>Paymount Amount</th>
+                <th>Transaction Type</th>
+                <th>Payment For</th>
+            </tr>
+        </thead>
+        <tbody *ngIf="filteredPayments().length>0;else paymentInfoFound">
+            <tr *ngFor="let package of filteredPayments()">
+                <td>{{package.client}}</td>
+                <td>{{package.paymentDate|date}}</td>
+                <td>R{{package.paymentAmount}}</td>
+                <td>{{package.transactionType}}</td>
+                <td>{{package.paymentfor}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <ng-template #paymentInfoFound>
+      <div class="alert">No payments found.</div>
+    </ng-template>
+</div>
+
+
+                   

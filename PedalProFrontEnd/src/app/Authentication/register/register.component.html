@@ -1,0 +1,92 @@
+<br/>
+<br/>
+<div class="help-container" id="helphelp">
+  <div style="text-align: center;">
+    <h6>Help for: Register</h6>
+  </div>
+  
+  <ul>
+    <li><ul>Your password needs to include:
+      <li>1 number</li>
+      <li>1 Capital letter</li>
+      <li>If you do not have these you will get an error</li>
+    </ul></li>
+    <li>Make sure you enter a valid email address</li>
+    <li>Insert you correct date of birth for best experience</li>
+    <li>Click on the button to close this window</li>
+  </ul>
+</div>
+<div class="wholecontainer">
+    <mat-icon routerLink="/login" aria-label="Back" id="back">keyboard_backspace</mat-icon>
+    <h2 class="mb-4" style="color: black;">Registration</h2>
+    
+    <form (submit)="registerUser()">
+        <div class="form-group">
+            <label for="clientTitle" style="color: black;">Title:</label>
+            <input type="text" class="form-control" id="clientTitle" name="clientTitle" [(ngModel)]="user.clientTitle" required>
+        </div>
+        <div class="form-group">
+            <label for="clientName" style="color: black;">Name:</label>
+            <input type="text" class="form-control" id="clientName" name="clientName" [(ngModel)]="user.clientName" required>
+        </div>
+        <div class="form-group">
+            <label for="clientSurName" style="color: black;">Surname:</label>
+            <input type="text" class="form-control" id="clientSurName" name="clientSurName" [(ngModel)]="user.clientSurname" required>
+        </div>
+        <div class="form-group">
+            <label for="phonenumber" style="color: black;">Phone Number:</label>
+            <input type="text" class="form-control" id="phonenumber" name="phonenumber" [(ngModel)]="user.clientPhoneNum" required>
+        </div>
+        <div class="form-group">
+            <label for="physcAddress" style="color: black;">Physical Address:</label>
+            <input type="text" class="form-control" id="physcAddress" name="physcAddress" [(ngModel)]="user.clientPhysicalAddress" required>
+        </div>
+        <div class="form-group">
+            <label for="clientDateOfBirth">Date of Birth:</label>
+            <input type="date" class="form-control" id="clientDateOfBirth"
+                   [(ngModel)]="user.clientDateOfBirth" name="clientDateOfBirth" required
+                   [max]="getTwoYearsAgo() | date: 'yyyy-MM-dd'">
+        </div>
+        <div class="form-group">
+            <label for="email" style="color: black;">Email:</label>
+            <input type="email" class="form-control" id="email" name="email" [(ngModel)]="user.emailAddress" required #emailInput="ngModel">
+            <div *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)">
+              <div *ngIf="emailInput.errors?.['required']" style="color: red;">
+                  *Email is required.
+              </div>
+            
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password" style="color: black;">New Password:</label>
+          <input type="text" class="form-control" id="password" name="password" [(ngModel)]="user.password" required
+                 (input)="validatePassword(user.password)">
+                 <div *ngIf="passwordErrors.length > 0" style="color: red;">
+                  <ul>
+                    <li *ngFor="let error of passwordErrors">{{ error }}</li>
+                  </ul>
+                </div>
+        </div>
+        <br/>
+        <div class="form-group">
+            <button type="submit" id="submit" class="btn btn-primary" [disabled]="loading" >Register</button>
+        </div>
+    </form>
+    <div class="help-button-container">
+        <button mat-icon-button class="help-button" (click)="toggleHelp()" style="text-align: center;">
+          <mat-icon>help_outline</mat-icon>
+        </button>
+      </div>
+    
+</div>
+
+<div class="modal" id="myModal" style="display: none;" >
+    <div class="modal-dialog" id="Dialog">
+      <div class="modal-content" id="Content">
+        <div class="modal-body" id="modalBody">
+          <h5>You have successfuly registered an account with CBT!</h5>
+          <button id="submit" type="button" class="btn btn-danger"  (click)="cancel_continue()">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>

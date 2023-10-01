@@ -1,0 +1,68 @@
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="login-page">
+  <div class="modal-container">
+    <div class="modal-header">
+      <mat-icon routerLink="/home" aria-label="Back" id="back">keyboard_backspace</mat-icon>
+      <button id="secondsecond" type="submit" class="btn" (click)="RegisterPage()">Don't have an account yet? Register here</button>
+    </div>
+    <div class="modal-content">
+        <div class="login-modal">
+          <div class="logo-container">
+            <img class="cbtlogo" src="assets/CBT.jpg" alt="CBT Logo" />
+            <img class="pedallogo" src="assets/pedal.png" alt="Pedal Logo" />
+          </div>
+          <br/>
+          <div id="first">
+            <h2 style="text-align: center;">Log into your account</h2>
+          </div>
+          <br/>
+          
+          <div id="login-form">
+            <form class="login-form" (ngSubmit)="onLogin()">
+              <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" [(ngModel)]="email" required>
+              </div>
+              <div>
+                <label for="password">Password: <i [class]="showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'" (click)="togglePasswordVisibility()" id="eye"></i> </label>
+                
+                  <input
+                    [type]="showPassword ? 'text' : 'password'"
+                    id="password"
+                    name="password"
+                    [(ngModel)]="password"
+                    required
+                  >
+              </div>
+              
+              <br/>
+              <button type="submit" id="submit">Login</button>
+            </form>
+            <br/>
+            <button class="forgot-button" (click)="ForgotPage()">Forgot password?</button>
+            <br/>
+            <button class="forgot-button" (click)="ReactivatePage()">Account deactivated?</button>
+          </div>
+        </div>
+      </div>
+      
+        </div>
+      </div>
+
+<div class="modal" id="myModal" style="display: none;" >
+  <div class="modal-dialog" id="Dialog">
+    <div class="modal-content" id="Content">
+      <div class="modal-body" id="modalBody">
+        <h5>Logged in successfuly!</h5>
+      </div>
+    </div>
+  </div>
+</div>
